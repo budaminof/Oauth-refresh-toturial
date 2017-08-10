@@ -9,6 +9,13 @@ function tokenForUser(user) {
   // who is this about? the sub is this specific user.
 }
 
+exports.signin = function (req, res, next) {
+  // user has already had their email and password auth'd
+  // we just need to give them a token
+  // our use comes from the done call back as req.user !!
+  res.send({ token: tokenForUser(req.user) });
+}
+
 exports.signup = function (req, res, next) {
 
   let email = req.body.email;
@@ -28,7 +35,6 @@ exports.signup = function (req, res, next) {
       return res.status(422).send({ error: 'Email is in use'});
     }
     // if a user with email DOES NOT exists, create and save record
-
     const user = new User({
       email: email,
       password: password
@@ -39,8 +45,6 @@ exports.signup = function (req, res, next) {
       // Respond to request indicating the user was created
       res.json({ token: tokenForUser(user), user: user });
     });
-
-
   })
 
 }
