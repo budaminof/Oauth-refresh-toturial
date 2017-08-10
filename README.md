@@ -1,3 +1,3 @@
-Oauth refresh toturial with Stehphen Grinder.
+Oauth refresh toturial with Stehphen Grider.
 
 Passport and JWT
